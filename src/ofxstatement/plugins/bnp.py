@@ -48,7 +48,7 @@ class bnpParser(CsvStatementParser):
         return reader
 
     def fix_amount(self, amount):
-        return amount.replace('.', '').replace(',', '.')
+        return amount.replace(',', '')
 
     def parse_record(self, line):
         """Parse given transaction line and return StatementLine object
