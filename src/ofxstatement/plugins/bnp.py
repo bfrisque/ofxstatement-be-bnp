@@ -47,19 +47,9 @@ class bnpParser(CsvStatementParser):
         next(reader, None)
         return reader
 
-    def fix_amount(self, amount):
-        return amount.replace(',', '')
-
     def parse_record(self, line):
         """Parse given transaction line and return StatementLine object
         """
-        transaction_id = line[0]
-        date = line[1]
-        date_value = line[2]
-        account_to = line[5]
-        description = line[6]
-        line[3] = self.fix_amount(line[3])
-        currency = line[3]
 
         stmtline = super(bnpParser, self).parse_record(line)
         stmtline.trntype = 'DEBIT' if stmtline.amount < 0 else 'CREDIT'
