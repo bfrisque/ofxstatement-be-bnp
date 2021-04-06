@@ -15,6 +15,7 @@ class bnpPlugin(Plugin):
         f = open(filename, 'r', encoding=self.settings.get("charset", "ISO-8859-1"))
         parser =bnpParser(f)
         parser.statement.bank_id = "Bnp"
+        parser.statement.currency = "EUR"
         return parser
 
 
