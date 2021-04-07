@@ -64,4 +64,10 @@ class bnpParser(CsvStatementParser):
         stmtline = super(bnpParser, self).parse_record(line)
         stmtline.trntype = 'DEBIT' if stmtline.amount < 0 else 'CREDIT'
 
+        # Raise an exception if we have statements for more than one account
+        if (self.statement.account_id == None):
+            self.statement.account_id = line[7]
+        elif (self.statement.account_id != line[7]):
+            raise ValueError("CSV file contains multiple accounts")
+
         return stmtline
