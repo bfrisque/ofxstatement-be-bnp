@@ -12,7 +12,7 @@ class bnpPlugin(Plugin):
     """
 
     def get_parser(self, filename):
-        f = open(filename, 'r', encoding=self.settings.get("charset", "ISO-8859-1"))
+        f = open(filename, 'r')
         parser =bnpParser(f)
         parser.statement.bank_id = "Bnp"
         return parser
