@@ -23,6 +23,7 @@ class bnpParser(CsvStatementParser):
     date_format = "%d/%m/%Y"
 
     mappings = {
+        'id': 0,
         'check_no': 0,
         'date': 1,
         'payee': 5,
