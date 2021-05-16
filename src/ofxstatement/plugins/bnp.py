@@ -12,8 +12,8 @@ class bnpPlugin(Plugin):
     """
 
     def get_parser(self, filename):
-        f = open(filename, 'r')
-        parser =bnpParser(f)
+        f = open(filename, 'r',encoding=self.settings.get("charset", "ISO-8859-1"))
+        parser = bnpParser(f)
         parser.statement.bank_id = "Bnp"
         parser.statement.currency = "EUR"
         return parser
@@ -34,7 +34,6 @@ class bnpParser(CsvStatementParser):
 
     def parse(self):
         """Main entry point for parsers
-
         super() implementation will call to split_records and parse_record to
         process the file.
         """
